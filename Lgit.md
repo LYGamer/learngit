@@ -51,3 +51,33 @@ $ git commit -m "wrote a readme file"
 `git status`命令可以让我们时刻掌握仓库当前的状态，上面的命令告诉我们，readme.txt被修改过了，但还没有准备提交的修改。
 `git diff`查看上次修改的内容。
 `git log`命令显示从最近到最远的提交日志,如果嫌输出信息太多，看得眼花缭乱的，可以试试加上`--pretty=oneline`参数。
+`git reset`回退到上一个版本:
+```
+$ git reset --hard HEAD^
+HEAD is now at ea34578 add distributed
+```
+`git reset`回到指定版本:
+```
+$ git reset --hard 3628164
+HEAD is now at 3628164 append GPL
+```
+`git reflog`用来记录你的每一次命令：
+```
+$ git reflog
+ea34578 HEAD@{0}: reset: moving to HE AD^
+3628164 HEAD@{1}: commit: append GPL
+ea34578 HEAD@{2}: commit: add distributed
+cb926e7 HEAD@{3}: commit (initial): wrote a readme file
+```
+
+
+`git checkout -- file`可以丢弃工作区的修改：
+>命令git checkout -- readme.txt意思就是，把readme.txt文件在工作区的修改全部撤销，这里有两种情况：
+
+>一种是readme.txt自修改后还没有被放到暂存区，现在，撤销修改就回到和版本库一模一样的状态；
+
+>一种是readme.txt已经添加到暂存区后，又作了修改，现在，撤销修改就回到添加到暂存区后的状态。
+
+>总之，就是让这个文件回到最近一次git commit或git add时的状态。
+
+命令`git rm`用于删除一个文件。如果一个文件已经被提交到版本库，那么你永远不用担心误删，但是要小心，你只能恢复文件到最新版本，你会丢失最近一次提交后你修改的内容。
