@@ -81,3 +81,35 @@ cb926e7 HEAD@{3}: commit (initial): wrote a readme file
 >总之，就是让这个文件回到最近一次git commit或git add时的状态。
 
 命令`git rm`用于删除一个文件。如果一个文件已经被提交到版本库，那么你永远不用担心误删，但是要小心，你只能恢复文件到最新版本，你会丢失最近一次提交后你修改的内容。
+
+
+### 创建SSH Key ###
+```
+$ ssh-keygen -t rsa -C "youremail@example.com"
+```
+>如果一切顺利的话，可以在用户主目录里找到.ssh目录，里面有id_rsa和id_rsa.pub两个文件，这两个就是SSH Key的秘钥对，id_rsa是私钥，不能泄露出去，id_rsa.pub是公钥，可以放心地告诉任何人。
+
+
+### 关联库 ###
+>目前，在GitHub上的这个learngit仓库还是空的，GitHub告诉我们，可以从这个仓库克隆出新的仓库，也可以把一个已有的本地仓库与之关联，然后，把本地仓库的内容推送到GitHub仓库。
+
+现在，我们根据GitHub的提示，在本地的learngit仓库下运行命令：
+
+```
+$ git remote add origin git@github.com:michaelliao/learngit.git
+```
+`git@github.com:michaelliao/learngit.git`为远程库地址
+`origin`为远程库的名字
+下一步，就可以把本地库的所有内容推送到远程库上：
+```
+$ git push -u origin master
+```
+>把本地库的内容推送到远程，用git push命令，实际上是把当前分支master推送到远程。
+由于远程库是空的，我们第一次推送master分支时，加上了-u参数，Git不但会把本地的master分支内容推送的远程新的master分支，还会把本地的master分支和远程的master分支关联起来，在以后的推送或者拉取时就可以简化命令。
+
+#### 小结 ####
+>要关联一个远程库，使用命令`git remote add origin git@server-name:path/repo-name.git`；
+>
+>关联后，使用命令`git push -u origin master`第一次推送master分支的所有内容；
+>
+>此后，每次本地提交后，只要有必要，就可以使用命令`git push origin master`推送最新修改；
