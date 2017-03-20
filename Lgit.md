@@ -158,3 +158,21 @@ Git鼓励大量使用分支：
 `git tag -s <tagname> -m "blablabla..."`可以用PGP签名标签；
 
 命令`git tag`可以查看所有标签。
+
+命令`git push origin <tagname>`可以推送一个本地标签；
+
+命令`git push origin --tags`可以推送全部未推送过的本地标签；
+
+命令`git tag -d <tagname>`可以删除一个本地标签；
+
+命令`git push origin :refs/tags/<tagname>`可以删除一个远程标签。
+
+### 配置别名 ###
+
+配置Git的时候，加上`--global`是针对当前用户起作用的，如果不加，那只针对当前的仓库起作用。
+
+配置文件放哪了？每个仓库的Git配置文件都放在`.git/config`文件中：
+
+
+sss
+ww
